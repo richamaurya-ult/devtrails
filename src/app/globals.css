@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  /* Netflix-inspired palette */
+  --color-netflix-black: #141414;
+  --color-netflix-dark: #181818;
+  --color-netflix-card: #2f2f2f;
+  
+  /* Zomato-inspired palette */
+  --color-zomato-green: #2ecc71;
+  --color-zomato-red: #cb202d;
+  
+  /* Guidewire-inspired palette */
+  --color-guidewire-blue: #00addc;
+  
+  --color-action: var(--color-zomato-green);
+  --color-bg-dark: var(--color-netflix-black);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-netflix-black text-white antialiased;
+    font-family: var(--font-sans);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl;
+  }
+  
+  .netflix-card-shadow {
+    box-shadow: 0 8px 24px -10px rgba(0,0,0,0.5);
+  }
+  
+  .zomato-progress-bg {
+    @apply bg-gray-800 rounded-full h-2 w-full overflow-hidden;
+  }
+  
+  .zomato-progress-fill {
+    @apply bg-zomato-green h-full transition-all duration-500 ease-out;
+  }
+}
+
+:root {
+  --background: #141414;
+  --foreground: #ffffff;
 }
